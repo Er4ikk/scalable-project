@@ -2,7 +2,7 @@ package com.example
 
 class PurchaseFirstVersion {
 
-    def coPurchaseItems(items:List[String]): Map[(String,String),Int] ={
+    def coPurchaseItems(items:List[String],debugMode:Boolean): Map[(String,String),Int] ={
 
         //grouping items by their order number
          val groupedItemsByOrder :  Map[String,List[String]] = items
@@ -10,12 +10,15 @@ class PurchaseFirstVersion {
           .groupBy(seq => seq(0))
           .map(el => (el._1,el._2.flatMap(el => el).filter(item => item != el._1)))
 
-        //printing the results
-        groupedItemsByOrder.foreach(el => {
-            println("order number: " + el._1)
-            println("items: " + el._2.mkString("-"))
-            println("------------------------------")
-        })
+        if(debugMode){
+            //printing the results
+            groupedItemsByOrder.foreach(el => {
+                println("order number: " + el._1)
+                println("items: " + el._2.mkString("-"))
+                println("------------------------------")
+            })
+        }
+
 
         //pairing objects
         val pairedObjects:Map[String,List[(String,String)]] = groupedItemsByOrder

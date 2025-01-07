@@ -7,6 +7,8 @@
       </element>
       <element id="module-output" name="scalable-project-build" />
       <element id="extracted-dir" path="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.15/scala-library-2.13.15.jar" path-in-jar="/" />
+      <element id="module-output" name="scalable-project" />
+      <element id="library" level="project" name="sbt: org.scala-lang:scala-library:2.13.15:jar" />
     </root>
   </artifact>
 </component>
