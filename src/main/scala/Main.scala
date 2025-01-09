@@ -1,6 +1,6 @@
 package main.scala
 
-import com.example.{CsvReader, CsvWriter, PurchaseFirstVersion}
+import com.example.{CsvReader, CsvWriter, PurchaseFirstVersion, PurchaseThirdVersion}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -72,6 +72,17 @@ object Main {
         val resultV2 = copurchaseV2.coPurchaseItems(csvToList, debugMode)
         val listV2 = normalizeOutput(resultV2)
         csvWriter.writeToSource(listV2, csvOut)
+      }
+
+      case 3 =>{
+        println("Using parallel collections")
+        val csvToList: Vector[String] = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
+        if(debugMode)
+          println("items collected: " + csvToList)
+        val copurchaseV3: PurchaseThirdVersion = new PurchaseThirdVersion()
+        val resultV3 = copurchaseV3.coPurchaseItems(csvToList, debugMode)
+        val listV3 = normalizeOutput(resultV3)
+        csvWriter.writeToSource(listV3, csvOut)
       }
 
       case _ =>{
