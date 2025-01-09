@@ -84,7 +84,7 @@ class PurchaseFirstVersion {
 
       println("Finished copurchase analysis")
 
-      return groupedItemsByOrder
+      groupedItemsByOrder
 
 
     }
