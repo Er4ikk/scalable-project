@@ -5,7 +5,8 @@ class PurchaseFirstVersion {
     def coPurchaseItems(items:List[String],debugMode:Boolean): Map[(String,String),Int] ={
       println("Starting copurchase analysis")
 
-      //grouping items by their order number <- if the input is over 5000000 java.lang.OutOfMemoryError: Java heap space 53s
+      //grouping items by their order number <- if the input is over 5000000 java.lang.OutOfMemoryError: Java heap space
+      //53s -> 5000000 items
       val groupedItemsByOrder : Map[(String,String),Int] = items
         .take(5000000)
         .map(el => el.split(","))
@@ -24,7 +25,6 @@ class PurchaseFirstVersion {
                     .map(item2 =>(item1,item2))
             })
         } )
-
         //counting occurences
         .values
         .flatten
@@ -32,7 +32,8 @@ class PurchaseFirstVersion {
         // count occurences to improve readibility
         .groupMapReduce(identity)(_=>1)(_ + _)
 
-        //old version  <- if the input is over 3000000: java.lang.OutOfMemoryError 123s
+        //old version  <- if the input is over 3000000: java.lang.OutOfMemoryError
+        //123s -> 3000000
       /*
         //grouping items by their order number
          val groupedItemsByOrder : Map[(String,String),Int] = items

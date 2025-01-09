@@ -42,10 +42,6 @@ object Main {
 
     //this is for reading a csv
     val csvReader : CsvReader = new CsvReader()
-    val csvToList: List[String] = csvReader.readFromSourceVariableSize(csvPath,inputSize)
-
-    if(debugMode)
-      println("items collected: " + csvToList)
 
     //this is for writing a csv
     val csvWriter: CsvWriter = new CsvWriter()
@@ -56,6 +52,9 @@ object Main {
       //first version of co-purchase
       case 1 =>{
         println("Using standard approach!")
+        val csvToList: List[String] = csvReader.readFromSourceVariableSize(csvPath,inputSize)
+        if(debugMode)
+          println("items collected: " + csvToList)
         val copurchase: PurchaseFirstVersion = new PurchaseFirstVersion()
         val result = copurchase.coPurchaseItems(csvToList, debugMode)
         val list = normalizeOutput(result)
@@ -66,14 +65,20 @@ object Main {
       //second version of co-purchase
       case 2=>{
         println("Using parallel collections")
+        val csvToList: Vector[String] = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
+        if(debugMode)
+          println("items collected: " + csvToList)
         val copurchaseV2: PurchaseSecondVersion = new PurchaseSecondVersion()
         val resultV2 = copurchaseV2.coPurchaseItems(csvToList, debugMode)
-        val listV2 = normalizeOutput(resultV2.toList.toMap)
+        val listV2 = normalizeOutput(resultV2)
         csvWriter.writeToSource(listV2, csvOut)
       }
 
       case _ =>{
         println("Uknown value for execution mode: " + executionMode + " using standard approach" )
+        val csvToList: List[String] = csvReader.readFromSourceVariableSize(csvPath,inputSize)
+        if(debugMode)
+          println("items collected: " + csvToList)
         //first version of co-purchase
         val copurchase: PurchaseFirstVersion = new PurchaseFirstVersion()
         val result = copurchase.coPurchaseItems(csvToList, debugMode)
@@ -98,7 +103,7 @@ object Main {
 
   }
 
-  def normalizeOutput(result:Map[(String,String),Int]):List[String]={
+  private def normalizeOutput(result:Map[(String,String),Int]):List[String]={
      result
       .map(el => (el._1.productIterator.mkString(","),el._2.toString).productIterator.mkString(","))
       .toList
