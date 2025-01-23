@@ -77,6 +77,7 @@ class PurchaseSecondVersion {
       .values
       .flatten
       .seq
+
       // count occurences to improve readibility
       //https://blog.genuine.com/2019/11/scalas-groupmap-and-groupmapreduce/
       .groupMapReduce(identity)(_=>1)(_ + _)

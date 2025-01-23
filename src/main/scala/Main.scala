@@ -75,14 +75,14 @@ object Main {
       }
 
       case 3 =>{
-        println("Using parallel collections")
+        println("Using spark")
         val csvToList: Vector[String] = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
         if(debugMode)
           println("items collected: " + csvToList)
         val copurchaseV3: PurchaseThirdVersion = new PurchaseThirdVersion()
         val resultV3 = copurchaseV3.coPurchaseItems(csvToList, debugMode)
-        val listV3 = normalizeOutput(resultV3)
-        csvWriter.writeToSource(listV3, csvOut)
+        //val listV3 = normalizeOutput(resultV3)
+        csvWriter.writeRDD(resultV3, csvOut)
       }
 
       case _ =>{
