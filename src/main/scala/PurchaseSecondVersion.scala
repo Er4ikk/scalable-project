@@ -12,7 +12,7 @@ class PurchaseSecondVersion {
     //set number of threads
     val numberOfProcessors:Int =Runtime.getRuntime.availableProcessors()
     println("found " + numberOfProcessors +" available")
-    ForkJoinTasks.defaultForkJoinPool.setParallelism(numberOfProcessors-2)
+    //ForkJoinTasks.defaultForkJoinPool.setParallelism(numberOfProcessors-2)
 
     //First Version of parallelizable copurchase
     //63s 5000000

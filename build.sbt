@@ -7,10 +7,9 @@ libraryDependencies +=
 val sparkVersion = "3.5.4"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion,
-  "org.apache.spark" %% "spark-sql" % sparkVersion,
-  "org.apache.spark" %% "spark-mllib" % sparkVersion
+  "org.apache.spark" %% "spark-sql" % sparkVersion
 )
-
+libraryDependencies+="com.google.cloud.bigdataoss" % "gcs-connector" % "hadoop2-1.9.17"
 
 lazy val root = (project in file("."))
   .settings(

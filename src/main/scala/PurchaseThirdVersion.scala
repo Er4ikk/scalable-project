@@ -8,7 +8,7 @@ class PurchaseThirdVersion {
   //set number of threads
   val numberOfProcessors:Int =Runtime.getRuntime.availableProcessors()
   println("found " + numberOfProcessors +" available")
-  val sc :SparkConf = new SparkConf().setAppName("copurchase-app").setMaster("local["+ (numberOfProcessors/2 )+"]")
+  val sc :SparkConf = new SparkConf().setAppName("copurchase-app").setMaster("local")
 
   def coPurchaseItems(items: Vector[String], debugMode: Boolean): RDD[((String, String), Int)] = {
     println("Starting copurchase analysis")

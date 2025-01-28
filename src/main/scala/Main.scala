@@ -1,6 +1,7 @@
 package main.scala
 
 import com.example.{CsvReader, CsvWriter, PurchaseFirstVersion, PurchaseThirdVersion}
+import org.apache.spark.{SparkConf, SparkContext}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -8,13 +9,16 @@ object Main {
     val CSV_PATH_ARGS:Int=0
     val INPUT_SIZE_ARGS:Int=1
     val EXECUTION_MODE_ARGS: Int=2
-    val DEBUG_MODE_ARGS:Int=3
+    val CLOUD_EXEC:Int=3
+    val DEBUG_MODE_ARGS:Int=4
+
 
     var inputSize:Int=4
     var debugMode: Boolean=false
     var executionMode:Int =1
     var csvPath: String = ""
     val csvOut: String = "out.csv"
+    var cloudExec :Boolean=false
 
     //argument management
     if(!args.equals(null) && args.length > 0){
@@ -35,6 +39,10 @@ object Main {
 
       if(args.length > EXECUTION_MODE_ARGS && !args(EXECUTION_MODE_ARGS).equals(null)){
         executionMode = args(EXECUTION_MODE_ARGS).toInt
+      }
+
+      if (args.length > CLOUD_EXEC && !args(CLOUD_EXEC).equals("null") && args(CLOUD_EXEC).equals("-cloud")) {
+        cloudExec = true
       }
     }
 
@@ -76,7 +84,13 @@ object Main {
 
       case 3 =>{
         println("Using spark")
-        val csvToList: Vector[String] = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
+        var csvToList: Vector[String]=null
+        if(cloudExec == true){
+          csvToList = csvReader.readFromCloud(csvPath,inputSize)
+        }else{
+          csvToList = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
+        }
+
         if(debugMode)
           println("items collected: " + csvToList)
         val copurchaseV3: PurchaseThirdVersion = new PurchaseThirdVersion()
