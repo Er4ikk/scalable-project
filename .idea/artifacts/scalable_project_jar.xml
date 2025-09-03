@@ -243,6 +243,67 @@
       <element id="library" level="project" name="sbt: org.tukaani:xz:1.9:jar" />
       <element id="library" level="project" name="sbt: org.xerial.snappy:snappy-java:1.1.10.5:jar" />
       <element id="library" level="project" name="sbt: oro:oro:2.0.8:jar" />
+      <element id="library" level="project" name="sbt: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.api-client:google-api-client-jackson2:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.api-client:google-api-client-java6:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.api-client:google-api-client:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.apis:google-api-services-storage:v1-rev20181109-1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.auto.value:auto-value-annotations:1.6.3:jar" />
+      <element id="library" level="project" name="sbt: com.google.cloud.bigdataoss:gcs-connector:hadoop2-1.9.17:jar" />
+      <element id="library" level="project" name="sbt: com.google.cloud.bigdataoss:gcsio:1.9.17:jar" />
+      <element id="library" level="project" name="sbt: com.google.cloud.bigdataoss:util-hadoop:hadoop2-1.9.17:jar" />
+      <element id="library" level="project" name="sbt: com.google.cloud.bigdataoss:util:1.9.17:jar" />
+      <element id="library" level="project" name="sbt: com.google.errorprone:error_prone_annotations:2.2.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.flatbuffers:flatbuffers-java:1.12.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.flogger:flogger-log4j-backend:0.3.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.flogger:flogger-system-backend:0.3.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.flogger:flogger:0.3.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.flogger:google-extensions:0.3.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.guava:failureaccess:1.0.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.guava:guava:27.0.1-jre:jar" />
+      <element id="library" level="project" name="sbt: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava:jar" />
+      <element id="library" level="project" name="sbt: com.google.http-client:google-http-client-jackson2:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.http-client:google-http-client:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.j2objc:j2objc-annotations:1.1:jar" />
+      <element id="library" level="project" name="sbt: com.google.oauth-client:google-oauth-client-java6:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.google.oauth-client:google-oauth-client:1.27.0:jar" />
+      <element id="library" level="project" name="sbt: com.univocity:univocity-parsers:2.9.1:jar" />
+      <element id="library" level="project" name="sbt: commons-logging:commons-logging:1.2:jar" />
+      <element id="library" level="project" name="sbt: io.airlift:aircompressor:0.27:jar" />
+      <element id="library" level="project" name="sbt: javax.mail:mail:1.4:jar" />
+      <element id="library" level="project" name="sbt: log4j:log4j:1.2.15:jar" />
+      <element id="library" level="project" name="sbt: org.antlr:antlr4-runtime:4.9.3:jar" />
+      <element id="library" level="project" name="sbt: org.apache.arrow:arrow-format:12.0.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.arrow:arrow-memory-core:12.0.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.arrow:arrow-memory-netty:12.0.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.arrow:arrow-vector:12.0.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.datasketches:datasketches-java:3.3.0:jar" />
+      <element id="library" level="project" name="sbt: org.apache.datasketches:datasketches-memory:2.1.0:jar" />
+      <element id="library" level="project" name="sbt: org.apache.hive:hive-storage-api:2.8.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.httpcomponents:httpclient:4.5.5:jar" />
+      <element id="library" level="project" name="sbt: org.apache.httpcomponents:httpcore:4.4.9:jar" />
+      <element id="library" level="project" name="sbt: org.apache.orc:orc-core:1.9.5:shaded-protobuf:jar" />
+      <element id="library" level="project" name="sbt: org.apache.orc:orc-mapreduce:1.9.5:shaded-protobuf:jar" />
+      <element id="library" level="project" name="sbt: org.apache.orc:orc-shims:1.9.5:jar" />
+      <element id="library" level="project" name="sbt: org.apache.parquet:parquet-column:1.13.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.parquet:parquet-common:1.13.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.parquet:parquet-encoding:1.13.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.parquet:parquet-format-structures:1.13.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.parquet:parquet-hadoop:1.13.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.parquet:parquet-jackson:1.13.1:jar" />
+      <element id="library" level="project" name="sbt: org.apache.spark:spark-catalyst_2.13:3.5.4:jar" />
+      <element id="library" level="project" name="sbt: org.apache.spark:spark-sketch_2.13:3.5.4:jar" />
+      <element id="library" level="project" name="sbt: org.apache.spark:spark-sql-api_2.13:3.5.4:jar" />
+      <element id="library" level="project" name="sbt: org.apache.spark:spark-sql_2.13:3.5.4:jar" />
+      <element id="library" level="project" name="sbt: org.apache.yetus:audience-annotations:0.13.0:jar" />
+      <element id="library" level="project" name="sbt: org.checkerframework:checker-qual:2.5.2:jar" />
+      <element id="library" level="project" name="sbt: org.codehaus.janino:commons-compiler:3.1.9:jar" />
+      <element id="library" level="project" name="sbt: org.codehaus.janino:janino:3.1.9:jar" />
+      <element id="library" level="project" name="sbt: org.codehaus.mojo:animal-sniffer-annotations:1.17:jar" />
+      <element id="library" level="project" name="sbt: org.jetbrains:annotations:17.0.0:jar" />
+      <element id="library" level="project" name="sbt: org.scala-lang.modules:scala-parser-combinators_2.13:2.3.0:jar" />
+      <element id="library" level="project" name="sbt: org.threeten:threeten-extra:1.7.1:jar" />
+      <element id="module-output" name="example-project-2.example-project-2-build" />
     </root>
   </artifact>
 </component>

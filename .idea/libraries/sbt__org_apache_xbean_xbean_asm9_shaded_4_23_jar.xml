@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="sbt: org.apache.xbean:xbean-asm9-shaded:4.23:jar" external-system-id="SBT">
+  <library name="sbt: org.apache.xbean:xbean-asm9-shaded:4.23:jar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/xbean/xbean-asm9-shaded/4.23/xbean-asm9-shaded-4.23.jar!/" />
     </CLASSES>

@@ -1,10 +1,17 @@
 package main.scala
 
-import com.example.{CsvReader, CsvWriter, PurchaseFirstVersion, PurchaseThirdVersion}
-import org.apache.spark.{SparkConf, SparkContext}
+import com.example.{CsvReader, CsvWriter, PurchaseFirstVersion, PurchaseFourthVersion, PurchaseThirdVersion}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
+
 
 object Main {
   def main(args: Array[String]): Unit = {
+
+    val spark = SparkSession.builder
+      .appName("copurchase-app")
+      .master("local")
+      .getOrCreate()
 
     val CSV_PATH_ARGS:Int=0
     val INPUT_SIZE_ARGS:Int=1
@@ -17,7 +24,10 @@ object Main {
     var debugMode: Boolean=false
     var executionMode:Int =1
     var csvPath: String = ""
-    val csvOut: String = "out.csv"
+    //for local tries use "output"
+    //gs://example-spark/output
+    val csvOut: String = "gs://example-spark/output"
+    val csvOut2:String ="output.csv"
     var cloudExec :Boolean=false
 
     //argument management
@@ -66,7 +76,7 @@ object Main {
         val copurchase: PurchaseFirstVersion = new PurchaseFirstVersion()
         val result = copurchase.coPurchaseItems(csvToList, debugMode)
         val list = normalizeOutput(result)
-        csvWriter.writeToSource(list, csvOut)
+        csvWriter.writeToSource(list, csvOut2)
       }
 
 
@@ -79,24 +89,62 @@ object Main {
         val copurchaseV2: PurchaseSecondVersion = new PurchaseSecondVersion()
         val resultV2 = copurchaseV2.coPurchaseItems(csvToList, debugMode)
         val listV2 = normalizeOutput(resultV2)
-        csvWriter.writeToSource(listV2, csvOut)
+        csvWriter.writeToSource(listV2, csvOut2)
       }
 
       case 3 =>{
         println("Using spark")
-        var csvToList: Vector[String]=null
+        var csvToList: RDD[String]=null
+        var csvToVector :Vector[String] = null
         if(cloudExec == true){
-          csvToList = csvReader.readFromCloud(csvPath,inputSize)
+          csvToList = csvReader.readFromCloud(csvPath,spark)
+          if (debugMode)
+            println("items collected: " + csvToList)
+
+          val copurchaseV3: PurchaseThirdVersion = new PurchaseThirdVersion()
+          val resultV3 = copurchaseV3.coPurchaseItems(csvToList, inputSize, debugMode, spark)
+          //val listV3 = normalizeOutput(resultV3)
+          csvWriter.writeRDD(resultV3, csvOut, spark)
+
+
         }else{
-          csvToList = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
+          csvToVector = csvReader.readFromSourceVariableSizeToVector(csvPath,inputSize)
+          if (debugMode)
+            println("items collected: " + csvToVector)
+          val copurchaseV3: PurchaseThirdVersion = new PurchaseThirdVersion()
+          val resultV3 = copurchaseV3.coPurchaseItems(spark.sparkContext.parallelize(csvToVector), inputSize, debugMode, spark)
+          //val listV3 = normalizeOutput(resultV3)
+          csvWriter.writeRDD(resultV3, csvOut, spark)
         }
 
-        if(debugMode)
-          println("items collected: " + csvToList)
-        val copurchaseV3: PurchaseThirdVersion = new PurchaseThirdVersion()
-        val resultV3 = copurchaseV3.coPurchaseItems(csvToList, debugMode)
-        //val listV3 = normalizeOutput(resultV3)
-        csvWriter.writeRDD(resultV3, csvOut)
+
+
+      }
+
+      case 4 => {
+        println("Using spark + partitioner")
+
+        var csvToVector: Vector[String] = null
+        var csvToList: RDD[String] = null
+        if (cloudExec == true) {
+          csvToList = csvReader.readFromCloud(csvPath,spark)
+          if (debugMode)
+            println("items collected: " + csvToList)
+          val copurchaseV4: PurchaseFourthVersion = new PurchaseFourthVersion()
+          val resultV4 = copurchaseV4.coPurchaseItems(csvToList, inputSize, debugMode, spark)
+
+          csvWriter.writeRDDWithPartitioner(resultV4, csvOut, spark)
+        } else {
+          csvToVector = csvReader.readFromSourceVariableSizeToVector(csvPath, inputSize)
+          if (debugMode)
+            println("items collected: " + csvToVector)
+          val copurchaseV4: PurchaseFourthVersion = new PurchaseFourthVersion()
+          val resultV4 = copurchaseV4.coPurchaseItems(spark.sparkContext.parallelize(csvToVector), inputSize, debugMode, spark)
+
+          csvWriter.writeRDDWithPartitioner(resultV4, csvOut, spark)
+        }
+
+
       }
 
       case _ =>{
@@ -129,7 +177,7 @@ object Main {
   }
 
   private def normalizeOutput(result:Map[(String,String),Int]):List[String]={
-     result
+    result
       .map(el => (el._1.productIterator.mkString(","),el._2.toString).productIterator.mkString(","))
       .toList
 

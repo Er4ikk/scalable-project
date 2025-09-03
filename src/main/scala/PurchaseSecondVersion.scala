@@ -1,12 +1,17 @@
 package main.scala
 
+/*
+decomment also this line when you add the scala-parallel-collections dependency to build.sbt
 import scala.collection.parallel.CollectionConverters.ImmutableIterableIsParallelizable
 import scala.collection.parallel.ForkJoinTasks
+
+ */
 
 class PurchaseSecondVersion {
 
   def coPurchaseItems(items: Vector[String], debugMode: Boolean): Map[(String, String), Int] = {
     println("Starting copurchase analysis")
+
 
 
     //set number of threads
@@ -55,8 +60,11 @@ class PurchaseSecondVersion {
     //47s -> 5000000
     //68s -> 7000000
     //java.lang.OutOfMemoryError: Java heap space if the input is above 7000000
+    //use only if the scala-parallel-collections" % "0.6.0 dependency is enabled in the build.sbt file
+    val groupedItemsByOrder : Map[(String,String),Int] = null
+    /*
     val groupedItemsByOrder : Map[(String,String),Int] = items
-      .take(7000000)
+      //.take(7000000)
       .par
       .map(el => el.split(","))
       .groupBy(seq => seq(0))
@@ -81,6 +89,8 @@ class PurchaseSecondVersion {
       // count occurences to improve readibility
       //https://blog.genuine.com/2019/11/scalas-groupmap-and-groupmapreduce/
       .groupMapReduce(identity)(_=>1)(_ + _)
+
+     */
 
 
 
