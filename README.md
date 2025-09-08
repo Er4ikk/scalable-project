@@ -20,7 +20,7 @@ Una volta scaricato, decomprimerlo e aprire la cartella rimanente con Intellij.<
 
 <h1>Deploy</h1>
 <p> Una vota ottenuto il fat jar, andare su Google CLoud > dataproc > create new cluster. Per le prove è stato utilizzato il cluster base di dataproc(N4 con debian 2.2.64) e se si ha una sottoscrizione come studente fare attenzione a non  superare i 500GB di archiviazione.</p>
-<p> Creare un bucket andando su Google Cloud console > barra di ricerca > scrivere bucket > creare un bucket chiamato "example-spark". Dopodichè caricare il fat jar ed il csv da analizzare.</p>
+<p> Creare un bucket andando su Google Cloud console > barra di ricerca > scrivere bucket > creare un bucket chiamato "example-spark" ed assicurarsi che abbia l'accesso pubblico. Dopodichè caricare il fat jar ed il csv da analizzare.</p>
 
 <h1> RUN</h1>
 <p> Per eseguire un job con il fat jar assicurarsi di aver fatto i 2 step precedenti. Andare poi all'interno del cluster e lanciare un nuovo job. Compilare i campi per eseguire il job, e nel form "Argomenti" inserire nella seguente forma gli argomenti:</p>
